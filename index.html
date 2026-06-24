@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- El CDN de imágenes (static.ctonline.mx) tiene hotlink protection y
+         responde 403 si el Referer es localhost. Sin Referer responde 200, así
+         que omitimos el Referer en todas las peticiones del mockup. -->
+    <meta name="referrer" content="no-referrer" />
+    <title>CTonline · Mockup UX — Algolia Agent Studio</title>
+  </head>
+  <body>
+    <!-- ===================== HEADER + SEARCH BAR CON IA ===================== -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#">CT<span>online</span></a>
+
+        <!-- (b) SEARCH BAR CON IA — superficie a analizar -->
+        <div id="searchbox" class="header-search"></div>
+
+        <nav class="header-nav">
+          <span class="nav-link">Cuenta</span>
+          <span class="nav-link">Carrito (0)</span>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===================== CUERPO / ESCENOGRAFÍA DE TIENDA ===================== -->
+    <main class="store">
+      <section class="hero">
+        <div class="hero-text">
+          <h1>Tecnología para tu negocio</h1>
+          <p>
+            Usa el <strong>buscador con IA</strong> de arriba o el
+            <strong>chat</strong> de abajo a la derecha para encontrar productos.
+            Prueba: <em>"quiero un mouse inalámbrico"</em>.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid" aria-label="Productos (placeholder)">
+        <!-- Tarjetas falsas: solo escenografía visual -->
+        <article class="card"><div class="ph-img"></div><h3>Laptop 14"</h3><p class="price">$12,999</p></article>
+        <article class="card"><div class="ph-img"></div><h3>Monitor 27"</h3><p class="price">$4,499</p></article>
+        <article class="card"><div class="ph-img"></div><h3>Teclado mecánico</h3><p class="price">$1,299</p></article>
+        <article class="card"><div class="ph-img"></div><h3>Mouse inalámbrico</h3><p class="price">$599</p></article>
+        <article class="card"><div class="ph-img"></div><h3>Webcam HD</h3><p class="price">$899</p></article>
+        <article class="card"><div class="ph-img"></div><h3>Disco SSD 1TB</h3><p class="price">$1,799</p></article>
+        <article class="card"><div class="ph-img"></div><h3>Router WiFi 6</h3><p class="price">$2,199</p></article>
+        <article class="card"><div class="ph-img"></div><h3>Impresora láser</h3><p class="price">$3,299</p></article>
+      </section>
+    </main>
+
+    <!-- ===================== CHAT (panel) + TRIGGER (botón flotante) ===================== -->
+    <div id="chat"></div>
+    <div id="chat-trigger"></div>
+
+    <!-- ===================== PANEL DE OBSERVACIÓN DE UX (§9) ===================== -->
+    <aside id="obs-panel" class="obs-panel collapsed" aria-label="Panel de observación de UX">
+      <button id="obs-toggle" class="obs-toggle" aria-expanded="false">
+        🔎 Observación UX
+      </button>
+      <div class="obs-body">
+        <p class="obs-meta">
+          Viewport: <span id="obs-viewport">–</span><br />
+          Memoria: <span id="obs-memory">–</span><br />
+          API: <code id="obs-api">–</code>
+        </p>
+        <!-- El checklist de §9 se inyecta desde app.js -->
+        <div id="obs-checklist"></div>
+        <label class="obs-notes-label" for="obs-notes">Notas de hallazgos</label>
+        <textarea id="obs-notes" class="obs-notes" placeholder="Anota aquí lo que observes…"></textarea>
+      </div>
+    </aside>
+
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>

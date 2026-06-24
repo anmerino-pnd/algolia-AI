@@ -1,0 +1,250 @@
+/* ===========================================================================
+   Layout mínimo del mockup de tienda. Los widgets de Algolia traen su propio
+   estilo (tema satélite). Aquí solo damos escenografía y el panel de UX.
+   =========================================================================== */
+
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --border: #e3e6ea;
+  --text: #1c1e21;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --header-h: 64px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ---------------------------- Header / search ---------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 20px;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: -0.5px;
+}
+.brand span { color: var(--accent); }
+
+.header-search {
+  flex: 1;
+  max-width: 640px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 18px;
+  white-space: nowrap;
+}
+.nav-link {
+  color: var(--muted);
+  font-size: 14px;
+  cursor: pointer;
+}
+.nav-link:hover { color: var(--text); }
+
+@media (max-width: 720px) {
+  .header-nav { display: none; }
+  .header-inner { gap: 14px; }
+}
+
+/* ------------------------------- Cuerpo ---------------------------------- */
+.store {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 96px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: #fff;
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 32px;
+}
+.hero-text h1 { margin: 0 0 10px; font-size: 30px; }
+.hero-text p { margin: 0; max-width: 620px; line-height: 1.5; opacity: 0.95; }
+.hero-text em { color: #ffd56b; font-style: normal; font-weight: 600; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+.card h3 { margin: 12px 0 4px; font-size: 15px; }
+.card .price { margin: 0; color: var(--accent); font-weight: 700; }
+.ph-img {
+  height: 130px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eef1f5, #dde3ea);
+}
+
+/* -------------------- Tarjetas de producto dentro del chat --------------- */
+.product-card__link { text-decoration: none; color: inherit; }
+.product-card {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.product-card__img {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #eef1f5;
+}
+.product-card__img--ph {
+  background: linear-gradient(135deg, #eef1f5, #dde3ea);
+}
+.product-card__body { min-width: 0; }
+.product-card__title {
+  margin: 0 0 2px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.product-card__brand,
+.product-card__sku {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.product-card__price {
+  margin: 4px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ------------------------- Panel de observación -------------------------- */
+.obs-panel {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 360px;
+  max-width: 90vw;
+  max-height: 80vh;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.1);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease;
+}
+.obs-panel.collapsed {
+  transform: translateY(-50%) translateX(calc(100% - 0px));
+}
+
+.obs-toggle {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-100%, -50%);
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  padding: 10px 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
+
+.obs-body {
+  padding: 16px;
+  overflow-y: auto;
+}
+.obs-meta {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0 0 12px;
+  word-break: break-all;
+}
+.obs-meta code { font-size: 10px; }
+.obs-on { color: #15803d; font-weight: 700; }
+.obs-off { color: #9ca3af; }
+
+.obs-group {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 0 0 12px;
+}
+.obs-group legend {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 6px;
+  color: var(--accent);
+}
+.obs-item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 12.5px;
+  line-height: 1.4;
+  margin: 6px 0;
+  cursor: pointer;
+}
+.obs-item input { margin-top: 2px; }
+
+.obs-notes-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 4px 0 6px;
+}
+.obs-notes {
+  width: 100%;
+  min-height: 90px;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  font: inherit;
+  font-size: 12.5px;
+}

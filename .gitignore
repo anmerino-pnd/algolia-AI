@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Credenciales: nunca commitear ningún .env con valores reales.
+# Solo se versiona .env.example (placeholders).
+.env
+.env.*
+!.env.example
+
+# Artefactos varios
+out/
